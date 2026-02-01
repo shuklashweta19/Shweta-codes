@@ -1,0 +1,56 @@
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode(int val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+
+public class mergeSortList {
+    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+
+            ListNode dummy = new ListNode(0);
+            ListNode temp = dummy;
+
+            while (l1 != null && l2 != null) {
+                if (l1.val < l2.val) {
+                    temp.next = l1;
+                    l1 = l1.next;
+                } else {
+                    temp.next = l2;
+                    l2 = l2.next;
+                }
+                temp = temp.next;
+            }
+
+            // add remaining nodes
+            if (l1 != null) {
+                temp.next = l1;
+            } else {
+                temp.next = l2;
+            }
+            return dummy.next;
+        }
+
+    public static void main(String[] args) {
+        ListNode l1 = new ListNode(1);
+
+        l1.next = new ListNode(2);
+        l1.next.next = new ListNode(5);
+
+        ListNode l2 = new ListNode(1);
+        l2.next = new ListNode(3);
+        l2.next.next = new ListNode(8);
+
+        ListNode result = mergeTwoLists(l1, l2);
+
+        while (result != null) {
+            System.out.print(result.val + " ");
+            result = result.next;
+        }
+    }
+}
+
